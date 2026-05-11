@@ -145,13 +145,25 @@ OPENAI_API_KEY=your_openai_api_key
 
 ## Running the Application
 
-### Start the FastAPI Backend
+## 4. Configure Environment Variables
+
+Create a `.env` file in the project root directory and add your OpenAI API key:
+
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+---
+
+## 5. Start the FastAPI Backend
+
+Run the backend server:
 
 ```bash
 uvicorn backend.main:app --reload
 ```
 
-Backend will run on:
+Backend will start on:
 
 ```text
 http://127.0.0.1:8000
@@ -159,21 +171,21 @@ http://127.0.0.1:8000
 
 ---
 
-### Access API Documentation
+## 6. Open the Frontend
 
-Swagger UI:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-ReDoc:
+Open the following file in your browser:
 
 ```text
-http://127.0.0.1:8000/redoc
+backend/index.html
 ```
 
 ---
+
+## 7. Use the Application
+
+1. Upload a Resume (`PDF` or `DOCX`)
+2. Paste the Job Description (JD)
+3. Click **Analyze**
 
 ## Example Workflow
 
@@ -250,24 +262,6 @@ GitHub Repository:
 Implementation Link:
 
 [https://github.com/AnikNicks/genai-resume-parser/tree/main](https://github.com/AnikNicks/genai-resume-parser/tree/main)
-
----
-
-## Author
-
-### Anik Das
-
-* MSc in Computer Science
-* AI/ML Researcher
-* Former Lecturer, Department of CSE
-* Research interests include:
-
-  * Machine Learning
-  * Deep Learning
-  * NLP
-  * Human-Computer Interaction
-  * Data Science
-  * GenAI
 
 ---
 
