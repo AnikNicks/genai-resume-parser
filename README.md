@@ -259,10 +259,6 @@ GitHub Repository:
 
 [https://github.com/AnikNicks/genai-resume-parser](https://github.com/AnikNicks/genai-resume-parser)
 
-Implementation Link:
-
-[https://github.com/AnikNicks/genai-resume-parser/tree/main](https://github.com/AnikNicks/genai-resume-parser/tree/main)
-
 ---
 
 ## License
