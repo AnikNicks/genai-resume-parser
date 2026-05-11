@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AI Resume Optimizer</title>
+</head>
+<body class="bg-slate-950 text-slate-200 p-4 md:p-12">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-8">
+            AI Resume Intelligence
+        </h1>
+
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Resume (PDF or DOCX)</label>
+                <input type="file" id="resume" class="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Job Description</label>
+                <textarea id="jd" rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Paste JD here..."></textarea>
+            </div>
+            <button onclick="analyze()" id="btn" class="w-full py-4 bg-blue-600 rounded-xl font-bold hover:bg-blue-500 transition-all active:scale-95">Analyze Match</button>
+        </div>
+
+        <!-- Results Display -->
+        <div id="results" class="hidden mt-12 space-y-8 animate-in fade-in duration-500">
+            <div class="flex items-center gap-6 p-6 bg-slate-900 rounded-3xl border border-slate-800">
+                <div class="text-6xl font-black text-emerald-400" id="score">0%</div>
+                <div>
+                    <h2 class="text-xl font-bold">ATS Alignment Score</h2>
+                    <p class="text-slate-400">Based on semantic keyword matching</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                    <h3 class="text-blue-400 font-bold mb-4 uppercase text-xs tracking-widest">Missing Keywords</h3>
+                    <div id="keywords" class="flex flex-wrap gap-2"></div>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                    <h3 class="text-cyan-400 font-bold mb-4 uppercase text-xs tracking-widest">Upskilling</h3>
+                    <ul id="upskilling" class="list-disc pl-5 space-y-2 text-sm"></ul>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                <h3 class="text-purple-400 font-bold mb-4 uppercase text-xs tracking-widest text-center">AI Optimization (Action-Result)</h3>
+                <div id="rewrites" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function analyze() {
+            const btn = document.getElementById('btn');
+            const file = document.getElementById('resume').files[0];
+            const jd = document.getElementById('jd').value;
+            
+            if (!file || !jd) return alert("Upload resume and paste JD!");
+
+            btn.innerText = "Processing...";
+            btn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('jd', jd);
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/analyze', { method: 'POST', body: formData });
+                let data = await res.json();
+
+                // 1. Ensure 'data' is an object (sometimes it comes back as a stringified string)
+                if (typeof data === 'string') data = JSON.parse(data);
+
+                // 2. Show the results container
+                document.getElementById('results').classList.remove('hidden');
+
+                // 3. Populate Score (Check for different possible key names)
+                document.getElementById('score').innerText = (data.ats_score || data.score || 0) + "%";
+
+                // 4. Populate Keywords (Check for missing_keywords)
+                const keywords = data.missing_keywords || data.keywords || [];
+                document.getElementById('keywords').innerHTML = keywords.length > 0 
+                    ? keywords.map(k => `<span class="px-3 py-1 bg-slate-800 rounded-full text-xs">${k}</span>`).join('')
+                    : "No gaps found!";
+
+                // 5. Populate Upskilling
+                const upskilling = data.upskilling || data.recommendations || [];
+                document.getElementById('upskilling').innerHTML = upskilling
+                    .map(u => `<li>${u}</li>`).join('');
+
+                // 6. Populate Rewrites (Matches 'original' and 'optimized' from your Python prompt)
+                const rewrites = data.rewrites || [];
+                document.getElementById('rewrites').innerHTML = rewrites.length > 0
+                    ? rewrites.map(r => `
+                        <div class="p-4 bg-slate-950 rounded-2xl border-l-4 border-purple-600 mb-4">
+                            <p class="text-xs text-slate-500 line-through mb-1">${r.original || "Original bullet point"}</p>
+                            <p class="text-sm text-slate-200 font-medium">"${r.optimized || r.new || "Optimized bullet"}"</p>
+                        </div>
+                    `).join('')
+                    : "No rewrites suggested.";
+
+            } catch (err) {
+                console.error("Frontend Error:", err);
+                alert("Check console (F12) for error details.");
+            } finally {
+                btn.innerText = "Analyze Match";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
