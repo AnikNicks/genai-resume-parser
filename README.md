@@ -10,10 +10,6 @@ Built using GPT-4o, FastAPI, Python, and modern frontend technologies, the platf
 
 ### Application Preview
 
-![Dashboard](screenshots/1.png)
-
-![ATS Analysis](screenshots/2.png)
-
 ![Recommendations](screenshots/3.png)
 
 ---
@@ -92,15 +88,15 @@ User Resume + Job Description
 
 ### Dashboard Interface
 
-![Dashboard](screenshot/1.png)
+![Dashboard](screenshots/1.png)
 
 ### Resume Analysis & ATS Score
 
-![ATS Analysis](screenshot/2.png)
+![ATS Analysis](screenshots/2.png)
 
 ### AI Rewrite & Recommendations
 
-![Recommendations](screenshot/3.png)
+![Recommendations](screenshots/3.png)
 
 ---
 
@@ -156,7 +152,7 @@ OPENAI_API_KEY=your_openai_api_key
 ### Start the FastAPI Backend
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn backend.main:app --reload
 ```
 
 Backend will run on:
@@ -275,7 +271,7 @@ Implementation Link:
   * NLP
   * Human-Computer Interaction
   * Data Science
-  * AI Systems
+  * GenAI
 
 ---
 
