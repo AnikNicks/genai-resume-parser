@@ -89,12 +89,8 @@ User Resume + Job Description
 ### Dashboard Interface
 
 ![Dashboard](screenshots/1.png)
-
-### Resume Analysis & ATS Score
-
 ![ATS Analysis](screenshots/2.png)
-
-### AI Rewrite & Recommendations
+### Resume Analysis -- ATS Score, AI Rewrite & Recommendations
 
 ![Recommendations](screenshots/3.png)
 
