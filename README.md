@@ -10,11 +10,11 @@ Built using GPT-4o, FastAPI, Python, and modern frontend technologies, the platf
 
 ### Application Preview
 
-![Dashboard](screenshot/1.png)
+![Dashboard](screenshots/1.png)
 
-![ATS Analysis](screenshot/2.png)
+![ATS Analysis](screenshots/2.png)
 
-![Recommendations](screenshot/3.png)
+![Recommendations](screenshots/3.png)
 
 ---
 
