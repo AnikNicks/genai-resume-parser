@@ -1,4 +1,4 @@
-# AI-Driven Resume Intelligence & ATS Optimizer
+# Project 1: AI-Driven Resume Intelligence & ATS Optimizer
 
 An AI-powered SaaS-style resume analysis platform that leverages Large Language Models (LLMs) to perform intelligent resume parsing, ATS evaluation, job alignment analysis, and resume enhancement recommendations.
 
