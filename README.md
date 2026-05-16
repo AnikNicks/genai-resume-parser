@@ -86,10 +86,10 @@ User Resume + Job Description
 
 ## Screenshots
 
-| Dashboard Interface | ATS Analysis | AI Rewrite & Recommendations |
+| Dashboard Interface | ATS Analysis, AI Rewrite & Recommendations |
 |:---:|:---:|:---:|
-| ![Dashboard](screenshots/1.png) | ![ATS Analysis](screenshots/2.png) | ![Recommendations](screenshots/3.png) |
-| *Interactive dashboard for resume insights and tracking.* | *ATS score analysis with keyword and compatibility checks.* | *AI-powered resume rewrites and personalized recommendations.* |
+| ![Dashboard](screenshots/1.png) | ![Recommendations](screenshots/3.png) |
+| *Interactive dashboard for resume insights and tracking.* | *AI-powered resume rewrites and personalized recommendations.* |
 
 ---
 
